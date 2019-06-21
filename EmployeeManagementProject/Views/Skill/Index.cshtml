@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EmployeeManagementProject.Models.Skill>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           <div class ="control-label col-md-2">Skill:</div>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Skill_Name)
+        </td>
+         <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Skill_id }) 
+        </td>
+    </tr>
+}
+
+</table>

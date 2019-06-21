@@ -1,0 +1,45 @@
+﻿@model EmployeeManagementProject.Models.Skill
+
+@using (Html.BeginForm())
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>To add a non existing skill please provide the information required</h4>
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="control-label col-md-2"><b>Skill Name</b></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Skill_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Skill_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2"><b>Skill Description</b></div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Skill_Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Skill_Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Skill" name="AddSkill"  formaction = "AddSkill" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+ 
+
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

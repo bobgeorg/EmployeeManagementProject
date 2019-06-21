@@ -1,0 +1,74 @@
+﻿@model EmployeeManagementProject.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee' Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hiring_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hiring_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skills)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Skill Name:</th>
+                    <th>Skill Description:</th>
+                </tr>
+                @foreach (var item in Model.Skills)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skill_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Skill_Description)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Update", "Edit", new { id = Model.Employee_id }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Employee_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

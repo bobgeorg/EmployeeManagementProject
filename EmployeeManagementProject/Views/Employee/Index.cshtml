@@ -1,0 +1,116 @@
+﻿@model EmployeeManagementProject.ViewModels.EmployeeIndexData
+
+
+@{
+    ViewBag.Title = "Employee";
+}
+
+<h2>Employee</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                Find by name:
+            </td>
+            <td> @Html.TextBox("SearchString", null, new { @class = "form-control" })
+            </td>
+             <td>
+                 <input type="submit" value="Search" class="btn btn-default" />
+            </td>
+            
+        </tr>
+   </table>
+   <br />
+}
+
+<table class="table">
+    <tr>
+       
+        <th>
+          Employee Name:
+        </th>
+        <th>
+            @Html.ActionLink("Employee Surname:", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+           Employee Details:
+        </th>
+        <th>
+            @Html.ActionLink("Hiring Date:", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Employees)
+    {
+
+        string selectedRow = "";
+        if (item.Employee_id== ViewBag.ID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow"  valign="top">
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hiring_Date)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.Employee_id}) |
+                @Html.ActionLink("Update", "Edit", new { id = item.Employee_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Employee_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Employee_id })
+            </td>
+        </tr>
+    }
+</table>
+
+@if (Model.Skills != null)
+{<div class="content">
+        <h3>Employee Skills</h3>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Skill Name</th>
+                <th>Description</th>
+            </tr>
+
+            @foreach (var item in Model.Skills)
+            {
+
+                <tr>
+
+                    <td>
+                        @item.Skill_Name
+                    </td>
+                    <td>
+                        @item.Skill_Description
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}
+ 
+
+@section Scripts { 
+<script src="~/Scripts/jquery-1.12.4.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>  
+    
+
+    }

@@ -1,0 +1,40 @@
+﻿@model EmployeeManagementProject.Models.Employee
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <table>
+            <tr>
+                @{
+                    int cnt = 0;
+                    List<EmployeeManagementProject.ViewModels.AssignedSkillData> skills = ViewBag.Skills;
+
+                    foreach (var skill in skills)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @:</tr><tr>
+                        
+                        
+
+                        }
+                        @:<td>
+                        
+
+                                  <input type="checkbox"
+                                   name="selectedSkills"
+                                   value="@skill.SkillID"
+                                   @(Html.Raw(skill.Assigned ? "checked=\"checked\"" : "")) />
+                                            @skill.SkillName
+                                            @:</td>
+                                        
+
+                                            
+                    }
+                    @:</tr>
+                
+                    
+                }
+            </table>
+        </div>
+    </div>
+
